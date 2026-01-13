@@ -12,8 +12,8 @@ const Skills = () => {
         { id: 6, src: <FaNodeJs size={50} />, title: 'Node JS', style: 'text-green-600' },
         { id: 7, src: <SiAutodesk size={50} />, title: 'Fusion 360', style: 'text-orange-600' },
         { id: 8, src: <SiMongodb size={50} />, title: 'MongoDB', style: 'text-green-500' },
-        { id: 9, src: <FaDatabase size={50} />, title: 'SQL', style: 'text-gray-500' },
-        { id: 10, src: <SiCplusplus size={50} />, title: 'C++', style: 'text-blue-800' },
+        { id: 9, src: <FaDatabase size={50} />, title: 'SQL', style: 'text-white' },
+        { id: 10, src: <SiCplusplus size={50} />, title: 'C++', style: 'text-blue-500' },
         { id: 11, src: <SiPytorch size={50} />, title: 'PyTorch', style: 'text-red-500' },
         { id: 12, src: <FaPython size={50} />, title: 'Python', style: 'text-yellow-600' },
     ];
@@ -21,24 +21,24 @@ const Skills = () => {
     return (
         <div
             id="skills"
-            className="w-full min-h-screen bg-parchment text-ink py-20"
+            className="w-full min-h-screen py-20 relative"
         >
-            <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full">
+            <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full z-10 relative">
                 <div className="pb-8 text-center">
-                    <p className="text-4xl font-story font-bold border-b-4 border-gold p-2 inline text-royal-red">
-                        Chapter 2: The Arsenal
-                    </p>
-                    <p className="py-6 font-body italic text-lg">The magical tools and spells mastered along the way</p>
+                    <h2 className="text-5xl font-stylish font-bold border-b-4 border-sunset p-2 inline text-white tracking-widest text-glow">
+                        Arsenal
+                    </h2>
+                    <p className="py-6 font-body text-xl text-gray-300">The magical tools and spells mastered along the way</p>
                 </div>
 
-                <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-8 text-center py-8 px-12 sm:px-0">
+                <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center py-8 px-12 sm:px-0">
                     {techs.map(({ id, src, title, style }) => (
                         <div
                             key={id}
-                            className={`shadow-lg hover:scale-105 duration-500 py-6 rounded-lg bg-white/50 border border-gold/20 hover:border-gold hover:shadow-gold/20 group`}
+                            className={`shadow-lg hover:scale-105 duration-500 py-6 rounded-2xl glass-panel group hover:bg-white/20`}
                         >
-                            <div className={`w-20 mx-auto py-2 ${style} group-hover:animate-bounce`}>{src}</div>
-                            <p className="mt-4 font-story text-xl">{title}</p>
+                            <div className={`w-20 mx-auto py-2 ${style} group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all`}>{src}</div>
+                            <p className="mt-4 font-header text-lg font-semibold text-white tracking-wide">{title}</p>
                         </div>
                     ))}
                 </div>

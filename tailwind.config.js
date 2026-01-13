@@ -7,20 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        parchment: "#fdfbf7",
-        ink: "#2d2a2e",
-        gold: "#c5a059",
-        "royal-red": "#8b0000",
-        primary: "#2d2a2e", // Mapping primary to ink for compatibility
-        secondary: "#fdfbf7", // Mapping secondary to parchment
-        accent: "#c5a059", // Mapping accent to gold
-        text: "#2d2a2e", // Mapping text to ink
+        // Nature Palette
+        midnight: "#0b1026",
+        sunset: "#ffb347",
+        forest: "#2d4a53",
+        glass: "rgba(255, 255, 255, 0.1)",
+        "glass-border": "rgba(255, 255, 255, 0.2)",
       },
       fontFamily: {
-        story: ['"Cinzel Decorative"', 'serif'],
-        body: ['Lora', 'serif'],
-        sans: ['Lora', 'serif'], // Default to serif for this theme
+        header: ['"League Spartan"', 'sans-serif'],
+        body: ['"Inter"', 'sans-serif'],
+        sans: ['"Inter"', 'sans-serif'],
+        stylish: ['"Jim Nightshade"', 'cursive'], // For section headings
+        signature: ['"Italianno"', 'cursive'],       // For name in Hero
       },
+      backgroundImage: {
+        'nature': "url('/src/assets/nature-bg.png')",
+      }
     },
   },
   plugins: [],

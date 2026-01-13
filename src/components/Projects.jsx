@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
+import GlassCard from './GlassCard';
+
 const Projects = () => {
     const projects = [
         {
@@ -56,37 +58,37 @@ const Projects = () => {
     return (
         <div
             id="projects"
-            className="w-full min-h-screen bg-parchment text-ink py-20"
+            className="w-full min-h-screen py-20 relative"
         >
-            <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
+            <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full z-10 relative">
                 <div className="pb-8 text-center">
-                    <p className="text-4xl font-story font-bold inline border-b-4 border-gold text-royal-red">
-                        Chapter 4: Chronicles
-                    </p>
-                    <p className="py-6 font-body italic text-lg">Tales of creation and innovation</p>
+                    <h2 className="text-5xl font-stylish font-bold inline border-b-4 border-sunset text-white tracking-widest text-glow">
+                        Chronicles
+                    </h2>
+                    <p className="py-6 font-body italic text-xl text-gray-300">Tales of creation and innovation</p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-12 sm:px-0">
                     {projects.map(({ id, title, description, tech, github, demo }) => (
-                        <div key={id} className="shadow-xl rounded-lg duration-300 hover:scale-105 bg-white border-4 border-double border-gold/40 p-6 flex flex-col justify-between group hover:border-royal-red/50">
+                        <GlassCard key={id} className="p-6 flex flex-col justify-between hover:bg-white/10 group duration-300">
                             <div>
-                                <h3 className="text-2xl font-story font-bold mb-2 text-royal-red group-hover:underline decoration-gold underline-offset-4">{title}</h3>
-                                <p className="text-ink/80 text-sm mb-4 font-body leading-relaxed">{description}</p>
+                                <h3 className="text-2xl font-header font-bold mb-2 text-sunset group-hover:underline decoration-white underline-offset-4">{title}</h3>
+                                <p className="text-gray-200 text-sm mb-4 font-body leading-relaxed">{description}</p>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {tech.map((t, i) => (
-                                        <span key={i} className="bg-parchment border border-gold/30 text-ink/70 text-xs px-2 py-1 rounded-sm font-story">{t}</span>
+                                        <span key={i} className="bg-white/10 border border-white/20 text-gray-300 text-xs px-2 py-1 rounded-sm font-header tracking-wide">{t}</span>
                                     ))}
                                 </div>
                             </div>
                             <div className="flex items-center justify-center gap-4 mt-4">
-                                <a href={github} target="_blank" rel="noreferrer" className="w-1/2 px-4 py-2 duration-200 hover:scale-105 flex items-center justify-center gap-2 bg-ink text-parchment rounded-sm font-story text-sm hover:bg-royal-red">
+                                <a href={github} target="_blank" rel="noreferrer" className="w-1/2 px-4 py-2 duration-200 hover:scale-105 flex items-center justify-center gap-2 bg-white text-midnight rounded-full font-header text-sm font-bold hover:bg-sunset hover:text-white shadow-lg">
                                     <FaGithub /> Code
                                 </a>
-                                <a href={demo} target="_blank" rel="noreferrer" className="w-1/2 px-4 py-2 duration-200 hover:scale-105 flex items-center justify-center gap-2 border-2 border-gold text-ink font-bold rounded-sm font-story text-sm hover:bg-gold hover:text-white">
+                                <a href={demo} target="_blank" rel="noreferrer" className="w-1/2 px-4 py-2 duration-200 hover:scale-105 flex items-center justify-center gap-2 border border-white text-white font-bold rounded-full font-header text-sm hover:bg-white hover:text-midnight">
                                     <FaExternalLinkAlt /> Demo
                                 </a>
                             </div>
-                        </div>
+                        </GlassCard>
                     ))}
                 </div>
             </div>

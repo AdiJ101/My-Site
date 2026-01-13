@@ -5,6 +5,22 @@ import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isVisible = prevScrollPos > currentScrollPos || currentScrollPos < 10;
+
+      setVisible(isVisible);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
 
   const links = [
     { id: 1, link: 'about', label: 'The Tale' },
@@ -15,56 +31,76 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-ink bg-parchment/90 fixed z-50 shadow-md border-b-2 border-gold/30 backdrop-blur-sm">
-      <div>
-        <h1 className="text-5xl font-story ml-2 cursor-pointer hover:scale-105 duration-200 text-royal-red">
-          <Link to="home" smooth duration={300}>
-            <img src={logo} alt="Logo" className="h-16 w-auto object-contain drop-shadow-lg" />
-          </Link>
-        </h1>
-      </div>
-
-      <ul className="hidden md:flex">
-        {links.map(({ id, link, label }) => (
-          <li
-            key={id}
-            className="px-6 cursor-pointer capitalize font-story text-lg text-ink/80 hover:scale-110 hover:text-royal-red duration-300"
-          >
-            <Link to={link} smooth duration={300} offset={-80}>
-              {label}
+    <nav
+      className={`fixed w-full z-50 top-0 px-4 py-4 flex justify-center transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}
+    >
+      <div className="flex justify-center gap-4 md:gap-8 items-center w-full max-w-5xl h-16 px-4 md:px-8 text-white glass-panel rounded-full relative">
+        <div>
+          <h1 className="font-header text-sm tracking-widest uppercase cursor-pointer transition-all duration-200">
+            <Link
+              to="home"
+              smooth
+              duration={300}
+              spy={true}
+              offset={-80}
+              activeClass="nav-active"
+              className="cursor-pointer px-4 py-2 rounded-full hover:text-sunset hover:scale-105 transition-all duration-300 flex items-center"
+            >
+              HOME
             </Link>
-          </li>
-        ))}
-      </ul>
+          </h1>
+        </div>
 
-      <div
-        onClick={() => setNav(!nav)}
-        className="cursor-pointer pr-4 z-10 text-ink md:hidden hover:text-royal-red transition-colors duration-300"
-      >
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </div>
-
-      {nav && (
-        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-parchment text-ink">
+        <ul className="hidden md:flex gap-4 md:gap-6">
           {links.map(({ id, link, label }) => (
             <li
               key={id}
-              className="px-4 cursor-pointer capitalize py-6 text-4xl font-story hover:text-royal-red duration-200"
+              className="font-header text-sm tracking-widest uppercase"
             >
               <Link
-                onClick={() => setNav(!nav)}
                 to={link}
                 smooth
                 duration={300}
                 offset={-80}
+                spy={true}
+                activeClass="nav-active"
+                className="cursor-pointer px-4 py-2 rounded-full hover:text-sunset hover:scale-105 transition-all duration-300 flex items-center"
               >
                 {label}
               </Link>
             </li>
           ))}
         </ul>
-      )}
-    </div>
+
+        <div
+          onClick={() => setNav(!nav)}
+          className="cursor-pointer z-10 text-white md:hidden hover:text-sunset transition-colors duration-300"
+        >
+          {nav ? <FaTimes size={25} /> : <FaBars size={25} />}
+        </div>
+
+        {nav && (
+          <ul className="flex flex-col justify-center items-center absolute top-20 left-0 right-0 mx-4 rounded-3xl glass-panel text-white py-10">
+            {links.map(({ id, link, label }) => (
+              <li
+                key={id}
+                className="px-4 cursor-pointer capitalize py-4 text-2xl font-header hover:text-sunset duration-200"
+              >
+                <Link
+                  onClick={() => setNav(!nav)}
+                  to={link}
+                  smooth
+                  duration={300}
+                  offset={-80}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </nav>
   );
 };
 
